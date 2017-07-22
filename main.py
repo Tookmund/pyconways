@@ -2,7 +2,7 @@
 # Conway's Game of Life in Python
 
 import os, random, time
-
+wraparound = True
 # https://stackoverflow.com/a/943921
 # Get number of rows and columns in terminal
 try:
@@ -25,16 +25,27 @@ def show():
 def populate():
     for row in range(rows):
         for col in range(columns):
-            if random.random() > 0.5:
+            if random.random() > 0.9:
                 board[row][col] = '.'
 
 def neighbors(b,row,col):
     # get neighbors
     total = 0
-    for r in [row-1,row,row+1]:
+    ra = [row-1,row,row+1]
+    ca = [col-1,col,col+1]
+    if wraparound:
+        if ra[0] == -1:
+            ra[0] = rows-1
+        elif ra[2] == rows:
+            ra[2] = 0
+        if ca[0] == -1:
+            ca[0] = columns-1
+        elif ca[2] == columns:
+            ca[2] = 0
+    for r in ra:
         if r == -1 or r == rows:
             continue
-        for c in [col-1,col,col+1]:
+        for c in ca:
             if c == -1 or c == columns:
                 continue
             if r == row and c == col:
@@ -63,6 +74,5 @@ while 1:
         for col in range(columns):
             living(b,row,col)
     show()
-    #time.sleep(1)
 
 
