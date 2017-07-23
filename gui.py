@@ -8,8 +8,8 @@ class App(tk.Tk):
         tk.Tk.__init__(self, *args, **kwargs)
         self.canvas = tk.Canvas(self,width=500,height=500)
         self.canvas.pack(side="top",fill="both",expand=True)
-        self.rows = 20
-        self.columns = 20
+        self.rows = 100
+        self.columns = 100
         self.size = 25
         self.rect = {}
         for r in range(self.rows):
@@ -23,11 +23,10 @@ class App(tk.Tk):
         self.con = Conway(self.rows,self.columns,True)
         self.con.populate()
         print("init")
-        self.redraw(1000)
+        self.redraw(10)
         
     def redraw(self,delay):
         self.con.generation()
-        print("run")
         for r in range(self.rows):
             for c in range(self.columns):
                 if self.con.board[r][c] == '.':
