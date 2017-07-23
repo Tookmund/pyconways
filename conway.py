@@ -16,7 +16,7 @@ class Conway:
     def populate(self):
         for row in range(self.rows):
             for col in range(self.columns):
-                if random.random() > 0.9:
+                if random.random() > 0.5:
                     self.board[row][col] = '.'
 
     def neighbors(self, b, row, col):
