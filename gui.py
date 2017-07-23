@@ -5,9 +5,9 @@ import tkinter as tk
 #https://stackoverflow.com/a/4785224
 class App(tk.Tk):
     def __init__(self, *args, **kwargs):
-        tk.Tk.__init__(self,*args, **kwargs)
-        self.canvas = tk.Canvas(self,width=500,height=500, borderwidth=0, highlightthickness=0)
-        self.canvas.pack(side="top",fill="both",expand="true")
+        tk.Tk.__init__(self, *args, **kwargs)
+        self.canvas = tk.Canvas(self,width=500,height=500)
+        self.canvas.pack(side="top",fill="both",expand=True)
         self.rows = 100
         self.columns = 100
         self.size = 25
@@ -34,7 +34,6 @@ class App(tk.Tk):
         for r in range(self.rows):
             for c in range(self.columns):
                 if self.con.board[r][c] == '.':
-                    print("life")
                     self.canvas.itemconfig(self.rect[r,c],fill="black")
                 else:
                     self.canvas.itemconfig(self.rect[r,c],fill="white")
