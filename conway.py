@@ -56,13 +56,11 @@ class Conway:
             if n == 3:
                 self.board[row][col] = '.'
 
-    def run(self,show):
-        while 1:
-            b = [r[:] for r in self.board]
-            for row in range(self.rows):
-                for col in range(self.columns):
-                    self.living(b,row,col)
-            show(self.board)
+    def generation(self):
+        b = [r[:] for r in self.board]
+        for row in range(self.rows):
+            for col in range(self.columns):
+                self.living(b,row,col)
 
 if __name__ == "__main__":
     def show(board):
@@ -79,6 +77,8 @@ if __name__ == "__main__":
         rows, columns = 80,40
     con = Conway(rows,columns,True)
     con.populate()
-    con.run(show)
+    while 1:
+        con.generation()
+        show(con.board)
 
 
