@@ -8,8 +8,8 @@ class App(tk.Tk):
         tk.Tk.__init__(self, *args, **kwargs)
         self.canvas = tk.Canvas(self,width=500,height=500)
         self.canvas.pack(side="top",fill="both",expand=True)
-        self.rows = 100
-        self.columns = 100
+        self.rows = 20
+        self.columns = 20
         self.size = 25
         self.rect = {}
         for r in range(self.rows):
@@ -24,20 +24,17 @@ class App(tk.Tk):
         self.con.populate()
         print("init")
         self.redraw(1000)
-
-    def run(self,delay):
-        self.con.generation()
-        print("run")
-        self.redraw(delay)
         
     def redraw(self,delay):
+        self.con.generation()
+        print("run")
         for r in range(self.rows):
             for c in range(self.columns):
                 if self.con.board[r][c] == '.':
                     self.canvas.itemconfig(self.rect[r,c],fill="black")
                 else:
                     self.canvas.itemconfig(self.rect[r,c],fill="white")
-        self.after(delay,self.run(delay))
+        self.after(delay,lambda: self.redraw(delay))
 
 if __name__ == "__main__":
     app = App()
