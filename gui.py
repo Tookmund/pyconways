@@ -10,7 +10,7 @@ class App(tk.Tk):
         self.canvas.pack(side="top",fill="both",expand=True)
         self.rows = 100
         self.columns = 100
-        self.size = 25
+        self.size = 10
         self.rect = {}
         for r in range(self.rows):
             for c in range(self.columns):
