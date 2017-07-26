@@ -6,6 +6,7 @@ import tkinter as tk
 class App(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
+        self.title("Conway's Game of Life")
         self.canvas = tk.Canvas(self,width=500,height=500)
         self.canvas.pack(side="top",fill="both",expand=True)
         self.rows = 100
@@ -22,7 +23,6 @@ class App(tk.Tk):
                 
         self.con = Conway(self.rows,self.columns,True)
         self.con.populate()
-        print("init")
         self.redraw(10)
         
     def redraw(self,delay):
