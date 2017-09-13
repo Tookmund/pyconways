@@ -21,7 +21,7 @@ class App(tk.Tk):
                 y2 = y1+self.size
                 self.rect[r,c] = self.canvas.create_rectangle(x1,y1,x2,y2, fill="white")
                 
-        self.con = Conway(self.rows,self.columns,True)
+        self.con = Conway(self.rows,self.columns)
         self.con.populate()
         self.redraw(10)
         

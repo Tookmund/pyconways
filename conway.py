@@ -4,10 +4,9 @@
 import os, random, time
 
 class Conway:
-    def __init__(self, rows, columns, wraparound):
+    def __init__(self, rows, columns):
         self.rows = rows
         self.columns = columns
-        self.wraparound = wraparound
         # https://stackoverflow.com/a/2397150
         # Set board to correct size
         self.board = [[' ' for y in range(columns)] for x in range(rows)]
@@ -24,23 +23,12 @@ class Conway:
         total = 0
         ra = [row-1,row,row+1]
         ca = [col-1,col,col+1]
-        if self.wraparound:
-            if ra[0] == -1:
-                ra[0] = self.rows-1
-            elif ra[2] == self.rows:
-                ra[2] = 0
-            if ca[0] == -1:
-                ca[0] = self.columns-1
-            elif ca[2] == self.columns:
-                ca[2] = 0
         for r in ra:
-            if r == -1 or r == self.rows:
-                continue
             for c in ca:
-                if c == -1 or c == self.columns:
-                    continue
                 if r == row and c == col:
                     continue
+                r = r%len(b)
+                c = c%len(b[r])
                 if b[r][c] == '.':
                     total += 1
         return total
@@ -75,7 +63,7 @@ if __name__ == "__main__":
         rows, columns = int(rows), int(columns)
     except:
         rows, columns = 80,40
-    con = Conway(rows,columns,True)
+    con = Conway(rows,columns)
     con.populate()
     while 1:
         con.generation()
